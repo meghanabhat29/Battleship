@@ -30,8 +30,7 @@ def check_answer(board,ship_row,ship_col,guess_row,guess_col):
             board[guess_row][guess_col] = 'X'
         return 0
 
-# Main method where program starts
-if __name__ == '__main__':
+def main():
     game_board = get_new_board(5)
     print_board(game_board)
     ship_row = random_row(game_board)
@@ -39,11 +38,20 @@ if __name__ == '__main__':
 
     for turn in range(4):
         print("Turn ", turn + 1)
-        guess_row = int(input("Guess Row : "))
-        guess_col = int(input("Guess column: "))
-        answer_value = check_answer(game_board,ship_row,ship_col,guess_row,guess_col)
+        guess_row = str(input("Guess Row : "))
+        guess_col = str(input("Guess column: "))
+
+        if guess_col.isdigit() and guess_row.isdigit():
+            answer_value = check_answer(game_board,ship_row,ship_col,guess_row,guess_col)
+        else:
+            print("Values can only be integer!")
+
         if(answer_value == 1):
             break
         if (turn == 3):
             print("----- Game Over ----- ")
             break
+
+# Main method where program starts
+if __name__ == '__main__':
+    main()
