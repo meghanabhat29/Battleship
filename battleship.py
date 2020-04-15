@@ -24,7 +24,7 @@ def check_answer(board,ship_row,ship_col,guess_row,guess_col):
         if (guess_row < 0 or guess_row > 4) or (guess_col < 0 or guess_col > 4):
             print("Oops! That's not even in the ocean!")
         elif board[guess_row][guess_col] == 'X':
-            print("You've guesses that already")
+            print("You've guessed that already")
         else:
             print("Sorry! That's a wrong guess")
             board[guess_row][guess_col] = 'X'
@@ -38,12 +38,12 @@ def main():
 
     for turn in range(4):
         print("Turn ", turn + 1)
-        guess_row = str(input("Guess Row : "))
-        guess_col = str(input("Guess column: "))
+        try:
+            guess_row = int(input("Guess Row : "))
+            guess_col = int(input("Guess column: "))
 
-        if guess_col.isdigit() and guess_row.isdigit():
             answer_value = check_answer(game_board,ship_row,ship_col,guess_row,guess_col)
-        else:
+        except:
             print("Values can only be integer!")
 
         if(answer_value == 1):
